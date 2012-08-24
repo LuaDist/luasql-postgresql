@@ -9,9 +9,6 @@ cmake_minimum_required ( VERSION 2.8 )
 include ( cmake/dist.cmake )
 include ( lua )
 
-# No default driver to install
-
-# Install  documentation
-install_data ( README )
-install_doc ( doc/ )
-install_test ( tests/ )
+find_package ( PostgreSQL REQUIRED )
+include_directories ( ${POSTGRESQL_INCLUDE_DIR} src )
+install_lua_module ( postgres src/ls_postgres.c src/luasql.c LINK ${POSTGRESQL_LIBRARIES} )
