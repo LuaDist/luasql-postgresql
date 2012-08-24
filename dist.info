@@ -1,6 +1,6 @@
 --- This file is part of LuaDist project
 
-name = "luasql"
+name = "luasql-postgresql"
 version = "2.3.0"
 
 desc = "Database connectivity for Lua - PostgreSQL driver"
