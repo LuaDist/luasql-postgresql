@@ -11,4 +11,4 @@ include ( lua )
 
 find_package ( PostgreSQL REQUIRED )
 include_directories ( ${POSTGRESQL_INCLUDE_DIR} src )
-install_lua_module ( postgres src/ls_postgres.c src/luasql.c LINK ${POSTGRESQL_LIBRARIES} )
+install_lua_module ( luasql.postgres src/ls_postgres.c src/luasql.c LINK ${POSTGRESQL_LIBRARIES} )
