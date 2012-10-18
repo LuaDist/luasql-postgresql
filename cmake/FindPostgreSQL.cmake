@@ -12,29 +12,12 @@
 # Redistribution and use is allowed according to the terms of the BSD license.
 # For details see the accompanying COPYING-CMAKE-SCRIPTS file.
 
-find_program(PG_CONFIG NAMES pg_config DOC "Path to pg_config utility")
+set(POSTGRESQL_VERSION "unknown")
 
-if(PG_CONFIG)
-    exec_program(${PG_CONFIG}
-      ARGS "--version"
-      OUTPUT_VARIABLE PG_CONFIG_VERSION)
-
-    if(${PG_CONFIG_VERSION} MATCHES "^[A-Za-z]+[ ](.*)$")
-      string(REGEX REPLACE "^[A-Za-z]+[ ](.*)$" "\\1" POSTGRESQL_VERSION "${PG_CONFIG_VERSION}")
-    endif()
-
-    exec_program(${PG_CONFIG}
-      ARGS "--includedir"
-      OUTPUT_VARIABLE PG_CONFIG_INCLUDEDIR)  
-
-    exec_program(${PG_CONFIG}
-      ARGS "--libdir"
-      OUTPUT_VARIABLE PG_CONFIG_LIBDIR)
-else()
-  set(POSTGRESQL_VERSION "unknown")
-endif()
-
-find_path(POSTGRESQL_INCLUDE_DIR libpq-fe.h
+find_path(POSTGRESQL_INCLUDE_DIR postgres.h
+  PATHS
+  pgsql
+  postgresql
   ${PG_CONFIG_INCLUDEDIR}
   /usr/local/include
   /usr/include
