@@ -18,6 +18,8 @@ find_path(POSTGRESQL_INCLUDE_DIR postgres.h
   PATHS
   pgsql
   postgresql
+  ${CMAKE_INCLUDE_PATH}/pgsql
+  ${CMAKE_INCLUDE_PATH}/postgresql
   ${PG_CONFIG_INCLUDEDIR}
   /usr/local/include
   /usr/include
